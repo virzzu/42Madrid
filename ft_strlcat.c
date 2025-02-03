@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: virginia <virginia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 11:55:16 by vgarcia-          #+#    #+#             */
-/*   Updated: 2025/01/31 18:29:34 by vgarcia-         ###   ########.fr       */
+/*   Updated: 2025/02/03 11:57:21 by virginia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,19 @@
 
 size_t	ft_strlcat(char *dest, const char *src, size_t dest_size)
 {
-	unsigned int	len;
-	int				s;
-	int				d;
+	size_t	i;
+	size_t	dest_len;
+	char	*d;
 
-	d = 0;
-	while (dest[d])
-		d++;
-	d--;
-	len = ft_strlen(src) + ft_strlen(dest);
-	s = 0;
-	while (dest[d] && len <= (dest_size - 1) && src[s])
-		dest[d++] = src[s++];
-	dest[d] = '\0';
-	return (len);
+	if (dest_size <= ft_strlen(dest))
+		return(dest_size + ft_strlen(src));
+	d = dest + ft_strlen(dest);
+	i = 0;
+	dest_len = ft_strlen(dest);
+	while (i++ < dest_size - dest_len - 1 && *src)
+		*d++ = *src++;
+	*d = '\0';
+	return(ft_strlen(dest) + ft_strlen(src));
 }
 
 // int main(void) 

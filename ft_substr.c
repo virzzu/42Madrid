@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: virginia <virginia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 12:24:10 by vgarcia-          #+#    #+#             */
-/*   Updated: 2025/01/31 17:00:11 by vgarcia-         ###   ########.fr       */
+/*   Updated: 2025/02/03 12:20:27 by virginia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,13 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 // 	return (0);
 // }
 /*******************************EXPLANATION*******************************/
-/*Quiero reservar un espacio de memoria dentro de un string para poder extraer
-un substring, es como si quisiera copiar una palabra de una frase y pegarla en
-otro lado.
-	s: La string desde la que crear la substring.
-	start: El índice del caracter en ’s’ desde el que empezar la substring.
-	len: La longitud máxima de la substring.
-Reserva (con malloc(3)) y devuelve una substring de la string ’s’.
-La substring empieza desde el índice ’start’ y tiene una longitud máx ’len'.
-Devuelve la substring resultante y NULL si falla la reserva de memoria.*/
+/*I want to allocate a memory space within a string to extract a substring, 
+as if I wanted to copy a word from a sentence and paste it elsewhere.  
+- s: The string from which to create the substring.  
+- start: The index of the character in *s* from which to start the substring.  
+- len: The maximum length of the substring.  
+
+It allocates memory (using *malloc(3)*) and returns a substring from the 
+string src. The substring starts at the index start and has a maximum 
+length of len.  
+Returns the resulting substring, or NULL if memory allocation fails.*/

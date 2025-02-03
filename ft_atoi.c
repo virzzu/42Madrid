@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: virginia <virginia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:37:37 by vgarcia-          #+#    #+#             */
-/*   Updated: 2025/01/31 16:56:46 by vgarcia-         ###   ########.fr       */
+/*   Updated: 2025/02/01 11:56:24 by virginia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	ft_atoi(const char *str)
 /***************************Description**************************/
 //ft_atoi() function is used to convert a numeric string into an integer value.
 
-// i is used to look across the src string
-// result holds the number converted as it goes
+// i is used to look across the src string as an iterator
+// result holds the number converted as it creates
 // negative represents positive or negative numbers
 // If the char we're pointing to is a control ascii number or space, ignore and
 // continue reading. If pointers find negative sign, hold it. 
