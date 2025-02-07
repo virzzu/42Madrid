@@ -5,16 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/06 14:44:33 by vgarcia-          #+#    #+#             */
-/*   Updated: 2025/02/06 17:48:47 by vgarcia-         ###   ########.fr       */
+/*   Created: 2025/02/07 14:43:01 by vgarcia-          #+#    #+#             */
+/*   Updated: 2025/02/07 15:45:02 by vgarcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_len(int n)
+static int	ft_count(int n)
 {
-	size_t	len;
+	int	len;
 
 	len = 0;
 	if (n <= 0)
@@ -27,15 +27,24 @@ static size_t	ft_len(int n)
 	return (len);
 }
 
+static void	ft_putnbr(char *str, unsigned int num, int index)
+{
+	while (num > 0)
+	{
+		str[index] = (num % 10) + '0';
+		num = num / 10;
+		index--;
+	}
+}
+
 char	*ft_itoa(int n)
 {
-	int			num;
-	char		*str;
-	size_t		len;
+	char			*str;
+	int				len;
+	unsigned int	num;
 
-	num = n;
-	len = ft_len(n);
-	str = malloc(sizeof(char) * (len + 1));
+	len = ft_count(n);
+	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
 	str[len--] = '\0';
@@ -43,15 +52,11 @@ char	*ft_itoa(int n)
 		str[0] = '0';
 	if (n < 0)
 	{
-		num = n * -1;
 		str[0] = '-';
+		num = n * -1;
 	}
-	
-	while (len > 0)
-	{
-		len--;
-		str[len] = (num % 10) + '0';
-		num = num / 10;
-	}	
+	else
+		num = n;
+	ft_putnbr(str, num, len);
 	return (str);
 }

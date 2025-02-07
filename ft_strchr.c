@@ -6,7 +6,7 @@
 /*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 11:48:03 by vgarcia-          #+#    #+#             */
-/*   Updated: 2025/01/28 11:48:15 by vgarcia-         ###   ########.fr       */
+/*   Updated: 2025/02/05 17:05:15 by vgarcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,23 @@ char	*ft_strchr(const char *str, int c)
 	}
 	if (l == '\0')
 		return ((char *)&str[i]);
-	return ((char *)0);
+	return (NULL);
 }
 
 /*La función ft_strchr es una función que se utiliza para 
-localizar la primera aparición de un carácter en una cadena.*/
+localizar la primera aparición de un carácter c en una cadena.
+Devuelve un puntero a esa pos (índice)*/
 
 // #include <stdio.h>
 // #include <string.h>
 // int main() {
 //     const char *cad = "Hola, mundo!";
-//     char buscar = '\0';
+//     char buscar = 'H';
 //     char *res;
 //     res = ft_strchr(cad, buscar);
 //     if (res) {
 //         printf("El carácter '%c' se encontró en la posición: %ld\n", 
-//buscar, res - cad);
+// buscar, res - cad);
 //     } else {
 //         printf("El carácter '%c' no se encontró.\n", buscar);
 //     }

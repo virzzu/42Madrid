@@ -6,7 +6,7 @@
 /*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 10:14:20 by vgarcia-          #+#    #+#             */
-/*   Updated: 2025/01/31 16:59:26 by vgarcia-         ###   ########.fr       */
+/*   Updated: 2025/02/06 09:45:25 by vgarcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ char	*ft_strdup(const char *src)
 	size_t	len;
 
 	len = ft_strlen(src);
-	dest = (char *)malloc((sizeof(char) * len) + 1);
+	dest = (char *)malloc(sizeof(char) * (len + 1));
 	if (!dest)
 		return (NULL);
-	dest = ft_memcpy(dest, src, len);
+	dest = ft_memcpy(dest, src, len + 1);
 	return (dest);
 }
 

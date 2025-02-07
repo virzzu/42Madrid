@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: virginia <virginia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:37:37 by vgarcia-          #+#    #+#             */
-/*   Updated: 2025/02/01 11:56:24 by virginia         ###   ########.fr       */
+/*   Updated: 2025/02/05 10:23:35 by vgarcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,16 @@ int	ft_atoi(const char *str)
 	i = 0;
 	result = 0;
 	negative = 1;
-	while (str[i] >= 9 && str[i] <= 32)
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
 		i++;
-	if (str[i] == 43)
-		i++;
-	if (str[i] == 45)
+	if (str[i] == '+' || str[i] == '-')
 	{
-		negative = -1;
+		if (str[i] == '-')
+			negative = -1;
 		i++;
 	}
+	if (ft_isdigit(str[i]) == 0)
+		return (result);
 	while (str[i] >= 48 && str[i] <= 57)
 	{
 		result = ((result * 10) + (str[i] - '0'));
@@ -49,7 +50,7 @@ int	ft_atoi(const char *str)
 // When the char found is between the ascii printable chars representing 
 // numbers, convert them by substracting 0 (48) and save them 
 // in result by passing them to the left as uds, tens, hundreds, thousends, etc.
-//Not forgetting to put negative if needed by multiplyinng by 1 or -1,
+//Not forgetting to put negative if needed by multiplying by 1 or -1,
 //previously taken care of.
 /*******************************MAIN*************************************/
 // int	main(void)

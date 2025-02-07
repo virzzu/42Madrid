@@ -6,7 +6,7 @@
 /*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 16:02:32 by vgarcia-          #+#    #+#             */
-/*   Updated: 2025/01/31 16:58:40 by vgarcia-         ###   ########.fr       */
+/*   Updated: 2025/02/05 10:17:17 by vgarcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,34 @@
 
 void	*ft_memmove(void *dest, const void *src, size_t len)
 {
-	unsigned char	*p_dest;
-	unsigned char	*p_src;
-
-	if (!src || !dest)
-		return (NULL);
-	p_dest = (unsigned char *)dest;
-	p_src = (unsigned char *)src;
-	if (p_dest < p_src)
+	if (dest < src)
+		return (ft_memcpy(dest, src, len));
+	if (dest > src)
 	{
-		while (len--)
+		while (len > 0)
 		{
-			*p_dest++ = *p_src++;
-		}
-	}
-	else
-	{
-		while (len-- > 0)
-		{
-			p_dest[len] = p_src[len];
+			((unsigned char *)dest)[len - 1] = ((unsigned char *)src)[len -1];
+			len--;
 		}
 	}
 	return (dest);
 }
 
-// int main() 
-// {
-//     char src[20] = "Example";
-// 	char dest[20] = "Overlapping";
+/**********************MAIN**********************/
+/* int main() 
+{
+    char src[20] = "Example";
+	char dest[20] = "Overlapping";
 
-//     printf("Before memmove: %s\n", dest);
-//     ft_memmove(dest , src, 15);
-//     printf("After memmove:  %s\n", dest);
-//     return 0;
-// }
+    printf("Before memmove: %s\n", dest);
+    ft_memmove(dest , src, 0);
+    printf("After memmove:  %s\n", dest);
+    return 0;
+} */
+/************************DESCRIPTION****************************/
+/*The ft_memmove() function copies n bytes from memory area 
+src to memory area dest. The memory areas may overlap:
+copying takes place as though the bytes in src are first
+copied into a temporary array that does not overlap src or
+dest, and the bytes are then copied from the temporary array to dest.
+*/

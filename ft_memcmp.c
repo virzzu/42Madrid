@@ -6,7 +6,7 @@
 /*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 13:30:57 by virginia          #+#    #+#             */
-/*   Updated: 2025/01/31 16:58:27 by vgarcia-         ###   ########.fr       */
+/*   Updated: 2025/02/07 17:00:33 by vgarcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 /*La función ft_memcmp compara dos bloques de memoria byte a byte. 
 Es útil cuando quieres comparar datos binarios almacenados en memoria, 
 no necesariamente cadenas de texto.*/
+/**********MAIN*************/
 // int main() {
 //     char data1[] = {1, 2, 3, 4, 5};
 //     char data2[] = {1, 2, 0, 4, 5};

@@ -6,7 +6,7 @@
 /*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:13:49 by virginia          #+#    #+#             */
-/*   Updated: 2025/01/31 16:59:40 by vgarcia-         ###   ########.fr       */
+/*   Updated: 2025/02/04 10:59:58 by vgarcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,15 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t dest_size)
 	i = 0;
 	while (src[src_size])
 		src_size++;
-	while (dest_size != 0 && src[i] && i < (dest_size - 1))
+	if (dest_size != 0)
 	{
-		dest[i] = src[i];
-		i++;
+		while (src[i] && i < (dest_size - 1))
+		{
+			dest[i] = src[i];
+			i++;
+		}
+		dest[i] = '\0';
 	}
-	dest[i] = '\0';
 	return (src_size);
 }
 
@@ -40,3 +43,6 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t dest_size)
 //     return 0;
 // }
 /************************DESCRIPTION********************************/
+/*The strlcpy() function copies up to size - 1 characters from the 
+NUL-terminated string src to dst, NUL-terminating the result.
+*/
