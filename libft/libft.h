@@ -6,7 +6,7 @@
 /*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 13:15:03 by vgarcia-          #+#    #+#             */
-/*   Updated: 2025/02/07 16:56:33 by vgarcia-         ###   ########.fr       */
+/*   Updated: 2025/02/12 17:29:58 by vgarcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+
+typedef struct	s_list
+{
+	void			*content;
+	struct s_list	*next;
+}					t_list;
 
 int				ft_isascii(int c);
 int				ft_isprint(int c);
