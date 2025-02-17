@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: virginia <virginia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 16:37:08 by vgarcia-          #+#    #+#             */
-/*   Updated: 2025/02/14 13:09:37 by vgarcia-         ###   ########.fr       */
+/*   Updated: 2025/02/17 21:17:42 by virginia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ static char	*ft_read(int fd, char *line)
 	bytes_read = 1;
 	while (!strchr(line, '\n') && bytes_read != 0) //bucle para leer hasta que en line haya una línea completa y aún queden bytes por leer
 	{
-		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		bytes_read = read(fd, buffer, BUFFER_SIZE); //leemos
 		if (bytes_read == -1) //esto significa que ha habido un error de lectura por parte de read
 		{
-			free(buffer);
-			free(line);
-			return (NULL);
+			free(buffer); //liberamos memoria
+			free(line); //strjoin hace malloc
+			return (NULL); //por enunciado
 		}
 		buffer[bytes_read] = '\0';//añadimos 0 al final para que sea una cadena válida para otras funciones
-		line = ft_strjoin(line, buffer);
+		line = ft_strjoin(line, buffer); //line tiene cosas hasta /n y puede que algo más
 	}
 	free(buffer);
 	if (bytes_read == 0) //puede que esto no haga falta??
@@ -54,7 +54,7 @@ static char	*ft_clean_line(char *line) //busca en una cadena si hay un \n, devue
 		if ((next + 1) != '\0') //si el salto de línea no es justo el último char
 			next++; //next ahora apunta a lo que hay después del salto, es decir, la siguiente línea almacenada
 	}
-	while (i )
+	
 	return (cleaned);
 }
 

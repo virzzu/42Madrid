@@ -3,20 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: virginia <virginia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:19:45 by vgarcia-          #+#    #+#             */
-/*   Updated: 2025/02/14 12:43:16 by vgarcia-         ###   ########.fr       */
+/*   Updated: 2025/02/17 18:22:26 by virginia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_neit_line.h"
 #include <string.h>
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*s3;
 	size_t	s3_len;
+	int		i;
+	int		j;
 	
 	if (!s1 || !s2)
 		return (NULL);
@@ -25,13 +27,22 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!s3)
 		return (NULL);
 	s3[0] = '\0';
-	if (strlen(s1) == 0)
-		strncat(s3, s2, s3_len + 1);
-	else
-	{
-		strncpy(s3, s1, strlen(s1) + 1);
-		strncat(s3 + strlen(s1), s2, s3_len + 1);
-	}
+	i = 0;
+	while (s1[i] != 0)
+		s3[i++] = s1[i++];
+	j = 0;
+	while (s2[j])
+		s3[i++] = s2[j++];
 	s3[s3_len] = '\0';
 	return (s3);
+}
+
+size_t	ft_strlen(char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }
