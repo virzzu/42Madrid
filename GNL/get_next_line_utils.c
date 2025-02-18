@@ -3,39 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: virginia <virginia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:19:45 by vgarcia-          #+#    #+#             */
-/*   Updated: 2025/02/17 18:22:26 by virginia         ###   ########.fr       */
+/*   Updated: 2025/02/18 14:42:12 by vgarcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_neit_line.h"
+#include "get_next_line.h"
 #include <string.h>
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*s3;
-	size_t	s3_len;
-	int		i;
-	int		j;
-	
-	if (!s1 || !s2)
-		return (NULL);
-	s3_len = (strlen(s1) + strlen(s2));
-	s3 = malloc(sizeof(char) * (s3_len + 1));
-	if (!s3)
-		return (NULL);
-	s3[0] = '\0';
-	i = 0;
-	while (s1[i] != 0)
-		s3[i++] = s1[i++];
-	j = 0;
-	while (s2[j])
-		s3[i++] = s2[j++];
-	s3[s3_len] = '\0';
-	return (s3);
-}
 
 size_t	ft_strlen(char *str)
 {
@@ -45,4 +21,32 @@ size_t	ft_strlen(char *str)
 	while (str[i] != '\0')
 		i++;
 	return (i);
+}
+
+char	*ft_strjoin(char *line, char *temp)
+{
+	char	*joined;
+	int		i;
+	int		j;
+	
+	if (!line) //esto ocurre cuando estamos leyendo la primera línea del file.
+	{
+		line = malloc(sizeof(char) * 1);
+		if (!line || !temp)
+			return (NULL);
+		line[0] = '\0'; //Por lo tanto debemos inicializarla para poder pasarsela a ft_strlen
+	}
+	joined = malloc(sizeof(char) * ((ft_strlen(line) + ft_strlen(temp)) + 1));
+	if (!joined) //si falla reserva de memoria
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (line[j] != 0)
+		joined[i++] = line[j++];
+	j = 0;
+	while (temp[j])
+		joined[i++] = temp[j++];
+	joined[i] = '\0';
+	free(line);
+	return (joined);
 }

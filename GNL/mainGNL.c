@@ -9,18 +9,15 @@ int main()
 	char	*line;
 	int		i;
 
-	i = 0;
+	i = 1;
 	fd = open("hola.txt", O_RDONLY);
 	while (1)
 	{
-		
 		line = get_next_line(fd);
+		printf("[%d]:%s\n\n", i, line);
+		i++;
 		if (line == NULL)
 			break;
-		printf("[%d]: %s\n\n\n", i, line);
-		free(line);
-		i++;
-		
 	}
 	close(fd);
 	return (0);
