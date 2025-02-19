@@ -14,10 +14,11 @@ int main()
 	while (1)
 	{
 		line = get_next_line(fd);
-		printf("[%d]:%s\n\n", i, line);
-		i++;
 		if (line == NULL)
 			break;
+		printf("[%d]:%s\n\n", i, line);
+		i++;
+		
 	}
 	close(fd);
 	return (0);

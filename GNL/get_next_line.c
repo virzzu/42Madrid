@@ -6,97 +6,101 @@
 /*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 16:37:08 by vgarcia-          #+#    #+#             */
-/*   Updated: 2025/02/18 14:46:21 by vgarcia-         ###   ########.fr       */
+/*   Updated: 2025/02/19 18:14:42 by vgarcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
-static char	*ft_read(int fd, char *line)
+static char	*ft_read(int fd, char *buffy)
 {
 	char	*temp; //array temporal donde guardamos los nuevos datos leidos
 	ssize_t	bytes_read; //sirve de control por si read falla o ha terminado de leer el archivo.
-
+	int		i;
+	
+	i = 0;
 	temp = malloc(sizeof(char) * (BUFFER_SIZE + 1)); //reservamos memoria para meter TODOS los bytes leídos
 	if (!temp) //si falla la reserva de memoria, por enunciado devolvemos null
 		return (NULL);
 	bytes_read = 1;
-	if (bytes_read != 0) //bucle para leer hasta que en line haya una línea completa y aún queden bytes por leer
+	while (bytes_read != 0) //bucle para leer hasta que en buffy haya una línea completa (hasta \n) y aún queden bytes por leer
 	{
-		bytes_read = read(fd, temp, BUFFER_SIZE); //leemos
+		bytes_read = read(fd, temp, BUFFER_SIZE); //leemos y lo guardamos en temp
 		if (bytes_read == -1 || bytes_read == 0) //esto significa que ha habido un error de lectura por parte de read
 		{
 			free(temp); //liberamos memoria
-			free(line); //strjoin hace malloc
+			// free(buffy); //strjoin hace malloc
 			return (NULL); //por enunciado
 		}
 		temp[bytes_read] = '\0';//añadimos 0 al final para que sea una cadena válida para otras funciones
-		line = ft_strjoin(line, temp); //line tiene cosas hasta /n y puede que algo más
+		buffy = ft_strjoin(buffy, temp); //buffy tiene cosas hasta /n y puede que algo más
+		while (buffy[i] != '\0' && buffy[i] != '\n') //busca que haya un salto de línea para no seguir leyendo más.
+			i++;
+		if (buffy[i] == '\n')
+			return (buffy);
+		
+		// if (bytes_read < BUFFER_SIZE) //estoy en la útlima línea
+		// 	return (buffy);
 	}
-	// if (bytes_read == 0) //puede que esto no haga falta??
-	// {
-	// 	free(temp);
-	// 	return (NULL);
-	// }
-	printf("Temp contiene:%s\n", temp);
-	return (line);
+	return(buffy);
 }
 
-static char	*ft_before_endl(char *line) //busca en una cadena pasada por read si hay un \n, devuelve el string que hay antes pero mantiene lo de después
+static char	*ft_before_endl(char *buffy) // devuelve el string que hay antes del \n pero mantiene lo de después
 {
 	char	*before_endl; //guarda solo la primera línea
 	int		i;
 	int		j;
 	
 	i = 0;
-	if (!line) //si no tengo line es que ft_read no lo ha conseguido
+	if (!buffy) //si no tengo buffy es que ft_read no lo ha conseguido
 		return(NULL);
-	while (line[i] && line[i] != '\n')
+	while (buffy[i] && buffy[i] != '\n')
 		i++; //i será el numero de char antes del endl y/o el índice de '\n'
 	before_endl = malloc(sizeof(char) * (i + 2)); //mas dos porque necesita el '\n' y el '\0'.
 	if (!before_endl) //fallo de reserva de memoria
 		return (NULL);
 	j = 0;
-	while (j <= i) //bucle que copia la primera línea que haya escrita en line, incluido el endl a su variable correspondiente
+	while (buffy[j] && buffy[j] != '\n') //bucle que copia la primera línea que haya escrita en buffy, incluido el endl a su variable correspondiente
 	{
-		before_endl[j] = line [j]; //line sigue teniendo todo !! se lo tengo que pasar a ft_after_endl para que lo mueva a justo después del '\n'
+		before_endl[j] = buffy[j]; //buffy sigue teniendo todo !! se lo tengo que pasar a ft_after_endl para que lo mueva a justo después del '\n'
 		j++;
 	}
 	before_endl[j] = '\0';
+	
 	return (before_endl);//fisrt tiene dentro solo hasta el \n incluido
 }
 
-static char	*ft_after_endl(char *line)
+static char	*ft_after_endl(char *buffy)
 {
 	char	*after_endl;
 	int		i;
 	int		j;
 
 	i = 0;
-	if (!line)
+	if (!buffy)
 		return (NULL);
-	while (line[i] && line[i] != '\n')
+	while (buffy[i] && buffy[i] != '\n')
 		i++; //i será el numero de char antes del endl y/o el índice de '\n'
-	after_endl = malloc(sizeof(char) * (ft_strlen(line) - i + 1));
+	after_endl = malloc(sizeof(char) * (ft_strlen(buffy) - i + 1));
 	j = 0;
 	i++; //paso el índice al siguiente char después de '\n'.
-	while (line[i])
-		after_endl[j++] = line[i++];
+	while (buffy[i])
+		after_endl[j++] = buffy[i++];
 	after_endl[j] = '\0'; //añadimos un fin de str para que sea válido
-	free(line);
+	free(buffy);
 	return (after_endl);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*line;
-	char		*buffer;
+	static char	*buffy;
+	char		*line;
 
-	if (!(fd >= 0 && BUFFER_SIZE > 0))
+	if (!(fd >= 0 && BUFFER_SIZE > 0 && fd < FOPEN_MAX))
 		return (NULL);
-	line = ft_read(fd, line);
-	buffer = ft_before_endl(line); //meto dentro de buffer todo lo primero hasta endl
-	line = ft_after_endl(line);
-	return (buffer);
+	buffy = ft_read(fd, buffy); //tenemos buffy hasta el salto de línea
+	line = ft_before_endl(buffy); //meto dentro de line todo lo primero hasta endl
+	buffy = ft_after_endl(buffy);
+	return (line);
 }
