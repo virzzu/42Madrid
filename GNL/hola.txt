@@ -1,6 +1,0 @@
-Welcome to the file!
-
-This is the first line.
-Esta es la segunda línea.
-C'est la troisième ligne.
-Bye bye!
