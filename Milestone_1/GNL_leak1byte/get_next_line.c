@@ -6,7 +6,7 @@
 /*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 16:37:08 by vgarcia-          #+#    #+#             */
-/*   Updated: 2025/03/04 16:28:02 by vgarcia-         ###   ########.fr       */
+/*   Updated: 2025/03/04 15:04:13 by vgarcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,32 +27,19 @@ static char	*ft_read(int fd, char *buffy)
 	{
 		bytes_read = read(fd, temp, BUFFER_SIZE); //leemos y lo guardamos en temp
 		if (bytes_read == -1 )
-		{
-			free(temp);
 			return (NULL); //por enunciado
-		}
-		if (bytes_read == 0) //esto significa que ha terminado de leer
-			break;
 		temp[bytes_read] = '\0';//añadimos 0 al final para que sea una cadena válida para otras funciones
 		joined = ft_strjoin(buffy, temp); //buffy tiene cosas hasta /n y puede que algo más
-		if (!joined)
-		{
-			free(temp);
-			free(buffy);
-			buffy = NULL; //noseyo
-			return NULL;
-		}
+		free(temp);
 		buffy = joined;
 		//free(joined);
 		while (buffy[i] != '\0' && buffy[i] != '\n') //busca que haya un salto de línea para no seguir leyendo más.
 			i++;
 		if (buffy[i] == '\n')
-		{
-			free(temp);	
 			return (buffy);
-		}
+ 		if (bytes_read == 0) //esto significa que ha terminado de leer
+			break;
 	}
-	free(temp);	
 	return(buffy);
 }
 
@@ -71,7 +58,7 @@ static char	*ft_before_endl(char *buffy) // devuelve el string que hay antes del
 	
 	i = 0;
 	if (!buffy[i]) //si no tengo buffy es que ft_read no lo ha conseguido, y si no hay nada e 
-	{
+	{	
 		return(NULL);
 	}
 	
@@ -100,12 +87,11 @@ static char	*ft_after_endl(char *buffy)
 	i = 0;
 	if (!buffy[i])
 	{
-		free(buffy);
 		return (NULL);
 	}
 	while (buffy[i] && buffy[i] != '\n')
 		i++; //i será el numero de char antes del endl y/o el índice de '\n'
-	after_endl = malloc(sizeof(char) * (ft_strlen(buffy) - i + 1));
+	after_endl = malloc(sizeof(char) * (ft_strlen(buffy) - i +1));
 	j = 0;
 	//TODO: understand the why???
 	if (buffy[i] != '\0')
@@ -114,7 +100,6 @@ static char	*ft_after_endl(char *buffy)
 		after_endl[j++] = buffy[i++];
 	after_endl[j] = '\0'; //añadimos un fin de str para que sea válido
 	free(buffy);
-	buffy = NULL;
 	return (after_endl);
 }
 
