@@ -7,19 +7,16 @@ int main()
 {
 	int		fd;
 	char	*line;
-	int		i;
 
-	i = 1;
 	fd = open("hola.txt", O_RDONLY);
 	while (1)
 	{
-		line = get_next_line(fd);
+		line = get_next_line(1);
 		if (line == NULL)
 			break;
-		if (i == 20)
-			break;
-		printf("\n<<<<<>>>>>\n[%d]:%s<<<<<>>>>>\n", i, line);
-		i++;
+
+		if (line)
+			printf("%s", line);
 		free(line);
 	}
 	

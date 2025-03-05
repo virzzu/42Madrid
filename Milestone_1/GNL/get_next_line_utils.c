@@ -6,7 +6,7 @@
 /*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:19:45 by vgarcia-          #+#    #+#             */
-/*   Updated: 2025/03/04 16:36:25 by vgarcia-         ###   ########.fr       */
+/*   Updated: 2025/03/05 17:40:00 by vgarcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ char *ft_strjoin(char *buffy, char *char_read)
 			if (!char_read && buffy)
 				free(buffy);
 			return (NULL);
-			
 		}
 		buffy[0] = '\0'; // Por lo tanto debemos inicializarla para poder pasarsela a ft_strlen y el puntero exista para después (aunque solo contenga el caracter nulo)
 	}
@@ -49,7 +48,6 @@ char *ft_strjoin(char *buffy, char *char_read)
 		return (NULL);
 	i = 0;
 	j = 0;
-
 	while (buffy[j])
 		joined[i++] = buffy[j++];
 	j = 0;

@@ -6,7 +6,7 @@
 /*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 16:37:08 by vgarcia-          #+#    #+#             */
-/*   Updated: 2025/03/04 16:28:02 by vgarcia-         ###   ########.fr       */
+/*   Updated: 2025/03/05 17:42:46 by vgarcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static char	*ft_read(int fd, char *buffy)
 		if (bytes_read == -1 )
 		{
 			free(temp);
+			free(buffy);
 			return (NULL); //por enunciado
 		}
 		if (bytes_read == 0) //esto significa que ha terminado de leer
@@ -39,29 +40,21 @@ static char	*ft_read(int fd, char *buffy)
 		{
 			free(temp);
 			free(buffy);
-			buffy = NULL; //noseyo
-			return NULL;
+			buffy = NULL;
+			return (NULL);
 		}
 		buffy = joined;
-		//free(joined);
 		while (buffy[i] != '\0' && buffy[i] != '\n') //busca que haya un salto de línea para no seguir leyendo más.
 			i++;
 		if (buffy[i] == '\n')
 		{
-			free(temp);	
+			free(temp);
 			return (buffy);
 		}
 	}
 	free(temp);	
 	return(buffy);
 }
-
-/*
-buffy = "lakfalkfnalbf
-" 
-&buffy =  new address
-strjoin = 
-*/
 
 static char	*ft_before_endl(char *buffy) // devuelve el string que hay antes del \n pero mantiene lo de después
 {
@@ -71,10 +64,7 @@ static char	*ft_before_endl(char *buffy) // devuelve el string que hay antes del
 	
 	i = 0;
 	if (!buffy[i]) //si no tengo buffy es que ft_read no lo ha conseguido, y si no hay nada e 
-	{
 		return(NULL);
-	}
-	
 	while (buffy[i] && buffy[i] != '\n')
 		i++; //i será el numero de char antes del endl y/o el índice de '\n'
 	before_endl = malloc(sizeof(char) * (i + 2)); //mas dos porque necesita el '\n' y el '\0'.
@@ -86,8 +76,13 @@ static char	*ft_before_endl(char *buffy) // devuelve el string que hay antes del
 		before_endl[j] = buffy[j]; //buffy sigue teniendo todo !! se lo tengo que pasar a ft_after_endl para que lo mueva a justo después del '\n'
 		j++;
 	}
-	before_endl[j] = '\n';
-	before_endl[j + 1] = '\0';
+	if (buffy[j] == '\n')
+	{
+		before_endl[j] = '\n';
+		before_endl[j + 1] = '\0';	
+	}
+	else
+		before_endl[j] = '\0';
 	return (before_endl);//before_endl tiene dentro solo hasta el \n, incluido
 }
 
@@ -131,7 +126,7 @@ char	*get_next_line(int fd)
 	if (!(fd >= 0 && BUFFER_SIZE > 0 && fd < FOPEN_MAX))
 		return (NULL);
 	buffy = ft_read(fd, buffy);
-	if(!buffy)
+	if (!buffy)
 		return (NULL); //tenemos buffy hasta el salto de línea
 	line = ft_before_endl(buffy); //meto dentro de line todo lo primero hasta endl
 	buffy = ft_after_endl(buffy);

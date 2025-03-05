@@ -6,7 +6,7 @@
 /*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 17:14:02 by vgarcia-          #+#    #+#             */
-/*   Updated: 2025/03/04 16:22:52 by vgarcia-         ###   ########.fr       */
+/*   Updated: 2025/03/05 16:56:15 by vgarcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 // library for printf
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 8
 # endif
 
 char	*get_next_line(int fd);
