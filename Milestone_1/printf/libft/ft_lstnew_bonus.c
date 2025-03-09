@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_percentage.c                                    :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: virginia <virginia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/23 09:58:32 by virginia          #+#    #+#             */
-/*   Updated: 2025/03/08 18:58:00 by virginia         ###   ########.fr       */
+/*   Created: 2025/02/12 17:34:28 by vgarcia-          #+#    #+#             */
+/*   Updated: 2025/02/12 17:47:56 by vgarcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_percentage(char c)
+t_list	*ft_lstnew(void *content)
 {
-	write(1, "%%", 1);
-	return (1);
+	t_list	*newnode;
+
+	newnode = (t_list *)malloc(sizeof(t_list));
+	if (!newnode)
+		return (NULL);
+	newnode->content = content;
+	newnode->next = NULL;
+	return (newnode);
 }

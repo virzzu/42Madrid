@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_percentage.c                                    :+:      :+:    :+:   */
+/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: virginia <virginia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/23 09:58:32 by virginia          #+#    #+#             */
-/*   Updated: 2025/03/08 18:58:00 by virginia         ###   ########.fr       */
+/*   Created: 2025/02/13 14:40:29 by vgarcia-          #+#    #+#             */
+/*   Updated: 2025/02/13 15:47:15 by vgarcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_percentage(char c)
+void	ft_lstdelone(t_list *node, void (*fx_delete)(void*))
 {
-	write(1, "%%", 1);
-	return (1);
+	if (node && fx_delete)
+	{	
+		fx_delete(node->content);
+		free(node);
+	}
 }

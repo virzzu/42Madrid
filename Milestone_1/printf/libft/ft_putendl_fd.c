@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_percentage.c                                    :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: virginia <virginia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/23 09:58:32 by virginia          #+#    #+#             */
-/*   Updated: 2025/03/08 18:58:00 by virginia         ###   ########.fr       */
+/*   Created: 2025/02/07 12:53:21 by vgarcia-          #+#    #+#             */
+/*   Updated: 2025/02/07 13:16:50 by vgarcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_percentage(char c)
+void	ft_putendl_fd(char *str, int fd)
 {
-	write(1, "%%", 1);
-	return (1);
+	write(fd, str, sizeof(char) * ft_strlen(str));
+	write(fd, "\n", sizeof(char));
 }

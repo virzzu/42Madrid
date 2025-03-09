@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_percentage.c                                    :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: virginia <virginia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/23 09:58:32 by virginia          #+#    #+#             */
-/*   Updated: 2025/03/08 18:58:00 by virginia         ###   ########.fr       */
+/*   Created: 2025/02/07 10:59:29 by vgarcia-          #+#    #+#             */
+/*   Updated: 2025/02/07 15:45:33 by vgarcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_percentage(char c)
+void	ft_striteri(char *str, void (*fx)(unsigned int, char*))
 {
-	write(1, "%%", 1);
-	return (1);
+	unsigned int	i;
+
+	if (!str || !fx)
+		return ;
+	i = 0;
+	while (str[i])
+	{
+		fx(i, &str[i]);
+		i++;
+	}
 }

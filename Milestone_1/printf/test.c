@@ -1,14 +1,30 @@
 
 #include <stdio.h>
-#include "ft_printf.h"
 
-int	main(void)
+#include <stdio.h>
+#include <stdarg.h>
+
+int	ft_printf(char const *str, ...)
 {
-	char	*ptr;
-	char hola[] = "Hola";
-	ptr = hola;
-	printf("ptr is %p\n", ptr);
-	ft_pointer(ptr);
+	va_list	args;
+	int		i;
+	int		result;
+	
 
-	return(0);
+	i = 0;
+	result = 0;
+	va_start(args, str);
+	while(str[i])
+	{
+		if (str[i] == '%')
+		{
+			result += ft_format(args, str[i + 1]);
+			i++; //avanzo para ignorar el char de formato
+		}
+		else
+			result += ft_putchar(str[i]);
+		i++;
+	}
+	va_end(args);
+	return (result);
 }

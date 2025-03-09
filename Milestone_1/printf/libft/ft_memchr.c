@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_percentage.c                                    :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: virginia <virginia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/23 09:58:32 by virginia          #+#    #+#             */
-/*   Updated: 2025/03/08 18:58:00 by virginia         ###   ########.fr       */
+/*   Created: 2025/02/07 16:01:58 by vgarcia-          #+#    #+#             */
+/*   Updated: 2025/02/07 16:54:49 by vgarcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_percentage(char c)
+void	*ft_memchr(const void *str, int c, size_t len)
 {
-	write(1, "%%", 1);
-	return (1);
+	unsigned int	i;
+
+	i = 0;
+	while (i < len)
+	{
+		if (((unsigned char *)str)[i] == (unsigned char)c)
+			return ((void *)&str[i]);
+		i++;
+	}
+	return (NULL);
 }

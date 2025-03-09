@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_percentage.c                                    :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: virginia <virginia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/23 09:58:32 by virginia          #+#    #+#             */
-/*   Updated: 2025/03/08 18:58:00 by virginia         ###   ########.fr       */
+/*   Created: 2025/01/21 15:18:29 by vgarcia-          #+#    #+#             */
+/*   Updated: 2025/01/31 16:59:44 by vgarcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_percentage(char c)
+size_t	ft_strlen(const char *str)
 {
-	write(1, "%%", 1);
-	return (1);
+	int	j;
+
+	j = 0;
+	while (str[j] != 0)
+		j++;
+	return (j);
 }
+// int	main(void)
+// {
+// 	char example[10] = "atw10mv";
+// 	printf("%d\n",ft_strlen(example));
+// 	return (0);
+// }
