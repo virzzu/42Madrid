@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_number.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: virginia <virginia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 11:18:41 by vgarcia-          #+#    #+#             */
-/*   Updated: 2025/03/12 17:30:33 by vgarcia-         ###   ########.fr       */
+/*   Updated: 2025/03/12 21:20:10 by virginia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ int	ft_number(int n)
 
 	num = ft_itoa(n);
 	write(1, num, ft_count(n));
+	free(num);
 	return (ft_count(n));
 }

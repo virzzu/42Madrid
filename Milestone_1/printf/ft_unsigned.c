@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unsigned.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: virginia <virginia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:35:54 by vgarcia-          #+#    #+#             */
-/*   Updated: 2025/03/12 17:32:16 by vgarcia-         ###   ########.fr       */
+/*   Updated: 2025/03/12 22:21:18 by virginia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_unsigned(unsigned int ui)
 	char	*num;
 
 	if (ui == 0)
-		write(1, "0", 1);
+		return(write(1, "0", 1));
 	else
 	{
 		num = ft_uitoa(ui);

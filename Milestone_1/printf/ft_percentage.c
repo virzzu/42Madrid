@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_percentage.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: virginia <virginia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 09:58:32 by virginia          #+#    #+#             */
-/*   Updated: 2025/03/11 13:25:21 by vgarcia-         ###   ########.fr       */
+/*   Updated: 2025/03/12 23:23:23 by virginia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,5 @@
 
 int	ft_percentage(int c)
 {
-	write(1, &c, 1);
-	return (1);
+	return(write(1, &c, 1));
 }

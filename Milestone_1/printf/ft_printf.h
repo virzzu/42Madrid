@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: virginia <virginia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 17:42:04 by virginia          #+#    #+#             */
-/*   Updated: 2025/03/12 18:33:24 by vgarcia-         ###   ########.fr       */
+/*   Updated: 2025/03/12 22:40:40 by virginia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <unistd.h>
 //for malloc
 # include <stdlib.h>
-# include <stdio.h>
-//for printf
+//for free
+
 
 int		ft_printf(char const *str, ...);
 int		ft_pointer(size_t ptr);

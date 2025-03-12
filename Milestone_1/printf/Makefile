@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+         #
+#    By: virginia <virginia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 16:32:44 by vgarcia-          #+#    #+#              #
-#    Updated: 2025/03/12 18:05:15 by vgarcia-         ###   ########.fr        #
+#    Updated: 2025/03/12 23:00:27 by virginia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,16 +32,16 @@ AR = ar rc
 ######## Rules #########
 
 $(NAME) : $(OBJ)
-	$(COMPILER) $(FLAGS) -c $(SRC) 
-	$(AR) $(NAME) $(OBJ) 
+	@$(COMPILER) $(FLAGS) -c $(SRC)
+	@$(AR) $(NAME) $(OBJ) 
 
 all: $(NAME)
 
 
 clean:
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
