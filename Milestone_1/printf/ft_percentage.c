@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_percentage.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: virginia <virginia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 09:58:32 by virginia          #+#    #+#             */
-/*   Updated: 2025/03/08 18:58:00 by virginia         ###   ########.fr       */
+/*   Updated: 2025/03/11 13:25:21 by vgarcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_percentage(char c)
+int	ft_percentage(int c)
 {
-	write(1, "%%", 1);
+	write(1, &c, 1);
 	return (1);
 }

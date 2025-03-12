@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: virginia <virginia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 09:54:24 by virginia          #+#    #+#             */
-/*   Updated: 2025/02/23 10:02:22 by virginia         ###   ########.fr       */
+/*   Updated: 2025/03/12 14:49:16 by vgarcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int	ft_putchar(char c)
 {
-	write(1, c, 1);
-	return(1);
+	write(1, &c, 1);
+	return (1);
 }

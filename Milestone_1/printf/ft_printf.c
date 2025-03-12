@@ -3,68 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: virginia <virginia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:01:17 by vgarcia-          #+#    #+#             */
-/*   Updated: 2025/03/08 18:51:48 by virginia         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:06:34 by vgarcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
-#include <stdarg.h>
-//for the variadic arguments
-#include <unistd.h>
-#include <string.h>
 
-int	ft_type(va_list aptr, char type)
+int	ft_type(va_list arg, char type)
 {
 	int	result;
 
 	result = 0;
 	if (type == '%')
-		result = ft_percentage(va_arg(aptr, char));
+		result += ft_percentage('%');
 	else if (type == 'c')
-		result = ft_putchar(va_arg(aptr, char));
+		result += ft_putchar(va_arg(arg, int));
 	else if (type == 's')
-		result = ft_string(va_arg(aptr, char *));
+		result += ft_string(va_arg(arg, char *));
 	else if (type == 'p')
-		result = ft_pointer(va_arg(aptr, unsigned long long));
+		result += ft_pointer(va_arg(arg, unsigned long long));
 	else if (type == 'd' || type == 'i')
-		result = ft_putnbr(va_arg(aptr, int));
+		result += ft_number(va_arg(arg, int));
 	else if (type == 'u')
-		result = ft_unsigned(va_arg(aptr, unsigned int));
+		result += ft_unsigned(va_arg(arg, unsigned int));
 	else if (type == 'x' || type == 'X')
-		result = ft_hexa(va_arg(aptr, unsigned int), type);
-	return (result);	
+		result += ft_printf_hex(va_arg(arg, unsigned int), type);
+	return (result);
 }
 
 int	ft_printf(char const *str, ...)
 {
-	va_list	aptr;
+	va_list	arg;
 	int		i;
 	int		result;
-	
 
 	i = 0;
 	result = 0;
-	va_start(aptr, str);
-	while(str[i])
+	va_start(arg, str);
+	while (str && str[i] != '\0')
 	{
-		if (str[i] == '%')
+		if (str[i] == '%' && str[i] != '\0')
 		{
-			result += ft_type(aptr, str[i + 1]);
+			if (str[i + 1] == '\0')
+				return (-1);
+			result += ft_type(arg, str[i + 1]);
 			i++;
 		}
 		else
 			result += ft_putchar(str[i]);
 		i++;
 	}
-	va_end(aptr);
+	va_end(arg);
 	return (result);
 }
-
-	// va_start( va_list argument, type); //va_start needs to be called before accesing any variable name is the mandatory argument
-	// va_arg(va_list argument, type);
-	// va_copy(va_list dest, va_list src);
-	// va_end(va_list argument);

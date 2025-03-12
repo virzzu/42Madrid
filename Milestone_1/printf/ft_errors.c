@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_errors.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 17:34:28 by vgarcia-          #+#    #+#             */
-/*   Updated: 2025/02/12 17:47:56 by vgarcia-         ###   ########.fr       */
+/*   Created: 2025/03/12 10:41:06 by vgarcia-          #+#    #+#             */
+/*   Updated: 2025/03/12 10:42:44 by vgarcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-t_list	*ft_lstnew(void *content)
+int	ft_errors(char const *str, ...)
 {
-	t_list	*newnode;
+	va_list	args;
+	int		count;
 
-	newnode = (t_list *)malloc(sizeof(t_list));
-	if (!newnode)
-		return (NULL);
-	newnode->content = content;
-	newnode->next = NULL;
-	return (newnode);
+	count = 1;
+	va_start(args, str);
+	while (va_arg(args, const char *) != NULL)
+		count++;
+	va_end(args);
+	printf("count: %d", count);
+	return (count);
 }

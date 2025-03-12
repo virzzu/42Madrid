@@ -1,26 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_print_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/13 13:49:00 by vgarcia-          #+#    #+#             */
-/*   Updated: 2025/02/13 15:44:31 by vgarcia-         ###   ########.fr       */
+/*   Created: 2025/03/12 13:41:57 by vgarcia-          #+#    #+#             */
+/*   Updated: 2025/03/12 17:31:52 by vgarcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_lstadd_back(t_list **first, t_list *new)
+int	ft_hexalen(size_t ptr)
 {
-	t_list	*temp;
+	int	len;
 
-	if (first && new)
+	len = 0;
+	while (ptr != 0)
 	{
-		temp = first;
-		while (temp->next)
-			temp = temp->next;
-		temp->next = new;
+		ptr /= 16;
+		len++;
 	}
+	return (len);
+}
+
+void	ft_dec_to_hex(unsigned long long ptr)
+{
+	if (ptr >= 16)
+	{
+		ft_dec_to_hex(ptr / 16);
+		ft_dec_to_hex(ptr % 16);
+	}
+	else if (ptr <= 9)
+		ft_putchar(ptr + '0');
+	else
+		ft_putchar(ptr - 10 + 'a');
 }

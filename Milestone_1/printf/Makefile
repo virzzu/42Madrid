@@ -3,31 +3,40 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: virginia <virginia@student.42.fr>          +#+  +:+       +#+         #
+#    By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/02/22 09:35:38 by virginia          #+#    #+#              #
-#    Updated: 2025/03/09 13:29:21 by virginia         ###   ########.fr        #
+#    Created: 2025/03/10 16:32:44 by vgarcia-          #+#    #+#              #
+#    Updated: 2025/03/12 18:05:15 by vgarcia-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRC = ft_printf.c \
+SRC =	ft_hex.c			\
+		ft_number.c			\
+		ft_percentage.c		\
+		ft_pointer.c		\
+		ft_printf.c			\
+		ft_print_utils.c	\
+		ft_putchar.c		\
+		ft_string.c			\
+		ft_unsigned.c		\
 
-OBJ = $(SRC.c=.o)
+OBJ = $(SRC:.c=.o)
 
 ####### Compilation #######
-COMPILATOR = cc
+COMPILER = cc
 FLAGS = -Wall -Wextra -Werror
-AR = ar rcs
-
-$(NAME) : $(OBJ)
-# #$(COMPILATOR) $(FLAGS) -c $(SRC) no se si hay que hacerlo??
-	@$(AR) $(NAME) $(OBJ)
+AR = ar rc
 
 ######## Rules #########
 
+$(NAME) : $(OBJ)
+	$(COMPILER) $(FLAGS) -c $(SRC) 
+	$(AR) $(NAME) $(OBJ) 
+
 all: $(NAME)
+
 
 clean:
 	rm -f $(OBJ)
@@ -35,4 +44,4 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-re: clean all
+re: fclean all

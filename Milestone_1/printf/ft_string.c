@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
+/*   ft_string.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/13 14:40:29 by vgarcia-          #+#    #+#             */
-/*   Updated: 2025/02/13 15:47:15 by vgarcia-         ###   ########.fr       */
+/*   Created: 2025/02/23 09:56:11 by virginia          #+#    #+#             */
+/*   Updated: 2025/03/12 18:40:02 by vgarcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_lstdelone(t_list *node, void (*fx_delete)(void*))
+static int	ft_strlen(char	*str)
 {
-	if (node && fx_delete)
-	{	
-		fx_delete(node->content);
-		free(node);
-	}
+	int	i;
+
+	i = 0;
+	while (str && str[i] != '\0')
+		i++;
+	return (i);
+}
+
+int	ft_string(char	*str)
+{
+	if (!str)
+		return (-1);
+	write(1, str, ft_strlen(str));
+	return (ft_strlen(str));
 }
