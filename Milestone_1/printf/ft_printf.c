@@ -6,7 +6,7 @@
 /*   By: virginia <virginia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:01:17 by vgarcia-          #+#    #+#             */
-/*   Updated: 2025/03/12 23:20:13 by virginia         ###   ########.fr       */
+/*   Updated: 2025/03/13 12:08:00 by virginia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,37 @@
 
 int	ft_type(va_list arg, char type)
 {
-	int	result;
+	int	printed;
 
-	result = 0;
+	printed = 0;
 	if (type == '%')
-		result += ft_percentage('%');
+		printed += ft_percentage('%');
 	else if (type == 'c')
-		result += ft_putchar(va_arg(arg, int));
+		printed += ft_putchar(va_arg(arg, int));
 	else if (type == 's')
-		result += ft_string(va_arg(arg, char *));
+		printed += ft_string(va_arg(arg, char *));
 	else if (type == 'p')
-		result += ft_pointer(va_arg(arg, size_t));
+		printed += ft_pointer(va_arg(arg, size_t));
 	else if (type == 'd' || type == 'i')
-		result += ft_number(va_arg(arg, int));
+		printed += ft_number(va_arg(arg, int));
 	else if (type == 'u')
-		result += ft_unsigned(va_arg(arg, unsigned int));
+		printed += ft_unsigned(va_arg(arg, unsigned int));
 	else if (type == 'x' || type == 'X')
-		result += ft_printf_hex(va_arg(arg, unsigned int), type);
+		printed += ft_printf_hex(va_arg(arg, unsigned int), type);
 	else
 		return(write(1, &type, 1));
-	return (result);
+	return (printed);
 }
 
 int	ft_printf(char const *str, ...)
 {
 	va_list	arg;
 	int		i;
+	int		printed;
 	int		result;
 
 	i = 0;
+	printed = 0;
 	result = 0;
 	va_start(arg, str);
 	while (str && str[i] != '\0')
@@ -51,15 +53,18 @@ int	ft_printf(char const *str, ...)
 		{
 			if (str[i + 1] == '\0')
 				return (0);
-			result += ft_type(arg, str[i + 1]);
+			result = ft_type(arg, str[i + 1]);
+			if (result < 0)
+				return (-1);
+			printed += result;
 			i++;
 		}
 		else
-			result += ft_putchar(str[i]);
-			if (result == -1)
+			printed += ft_putchar(str[i]);
+			if (printed == -1)
 				return (-1);
 		i++;
 	}
 	va_end(arg);
-	return (result);
+	return (printed);
 }

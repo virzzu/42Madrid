@@ -6,7 +6,7 @@
 /*   By: virginia <virginia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 11:18:41 by vgarcia-          #+#    #+#             */
-/*   Updated: 2025/03/12 21:20:10 by virginia         ###   ########.fr       */
+/*   Updated: 2025/03/13 12:03:03 by virginia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,13 @@ int	ft_number(int n)
 	char	*num;
 
 	num = ft_itoa(n);
-	write(1, num, ft_count(n));
+	if (num == NULL)
+		return (-1);
+	if(write(1, num, ft_count(n)) < 0)
+	{
+		free(num);
+		return (-1);
+	}
 	free(num);
 	return (ft_count(n));
 }
