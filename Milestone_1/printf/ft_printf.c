@@ -6,7 +6,7 @@
 /*   By: virginia <virginia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 17:01:17 by vgarcia-          #+#    #+#             */
-/*   Updated: 2025/03/13 12:08:00 by virginia         ###   ########.fr       */
+/*   Updated: 2025/03/13 12:54:38 by virginia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,24 +45,20 @@ int	ft_printf(char const *str, ...)
 
 	i = 0;
 	printed = 0;
-	result = 0;
 	va_start(arg, str);
-	while (str && str[i] != '\0')
+	while (str && str[i])
 	{
-		if (str[i] == '%' && str[i] != '\0')
+		if (str[i] == '%' && str[i + 1])
 		{
-			if (str[i + 1] == '\0')
-				return (0);
-			result = ft_type(arg, str[i + 1]);
+			result = ft_type(arg, str[++i]);
 			if (result < 0)
 				return (-1);
-			printed += result;
-			i++;
 		}
 		else
-			printed += ft_putchar(str[i]);
-			if (printed == -1)
-				return (-1);
+			result = ft_putchar(str[i]);
+		if (result < 0)
+			return (-1);
+		printed += result;
 		i++;
 	}
 	va_end(arg);
