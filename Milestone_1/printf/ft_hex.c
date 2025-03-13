@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_hex.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgarcia- <vgarcia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: virginia <virginia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 11:08:39 by vgarcia-          #+#    #+#             */
-/*   Updated: 2025/03/12 17:32:39 by vgarcia-         ###   ########.fr       */
+/*   Updated: 2025/03/13 15:48:51 by virginia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_hex(unsigned long long dec, char type)
+int	ft_hex(unsigned long long dec, char type)
 {
 	if (dec >= 16)
 	{
@@ -20,14 +20,24 @@ void	ft_hex(unsigned long long dec, char type)
 		ft_hex(dec % 16, type);
 	}
 	else if (dec <= 9)
-		ft_putchar(dec + '0');
+	{
+		if (ft_putchar(dec + '0') < 0)
+			return (-1);	
+	}
 	else
 	{
 		if (type == 'x')
-			ft_putchar(dec - 10 + 'a');
+		{
+			if (ft_putchar(dec - 10 + 'a') < 0)
+				return (-1);
+		}
 		else if (type == 'X')
-			ft_putchar(dec - 10 + 'A');
+		{
+			if (ft_putchar(dec - 10 + 'A') < 0)
+				return (-1);
+		}
 	}
+	return (0);
 }
 
 int	ft_printf_hex(unsigned long long dec, char type)
@@ -39,7 +49,8 @@ int	ft_printf_hex(unsigned long long dec, char type)
 		return (write(1, "0", 1));
 	else
 	{
-		ft_hex(dec, type);
+		if (ft_hex(dec, type) < 0)
+			return (-1);
 		i = ft_hexalen(dec);
 	}
 	return (i);

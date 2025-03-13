@@ -6,7 +6,7 @@
 /*   By: virginia <virginia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 17:42:04 by virginia          #+#    #+#             */
-/*   Updated: 2025/03/12 22:40:40 by virginia         ###   ########.fr       */
+/*   Updated: 2025/03/13 15:48:44 by virginia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int		ft_string(char	*str);
 int		ft_number(int n);
 int		ft_hexalen(size_t ptr);
 int		ft_unsigned(unsigned int ui);
-int		ft_hexa(unsigned long long dec, char type);
-void	ft_dec_to_hex(unsigned long long dec);
+int		ft_dec_to_hex(unsigned long long dec);
 int		ft_printf_hex(unsigned long long dec, char type);
+int		ft_hex(unsigned long long dec, char type);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: virginia <virginia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:35:54 by vgarcia-          #+#    #+#             */
-/*   Updated: 2025/03/12 22:21:18 by virginia         ###   ########.fr       */
+/*   Updated: 2025/03/13 13:17:27 by virginia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,17 @@ int	ft_unsigned(unsigned int ui)
 {
 	char	*num;
 
+	if (ui < 0)
+		return (-1);
 	if (ui == 0)
 		return(write(1, "0", 1));
 	else
 	{
 		num = ft_uitoa(ui);
-		ft_string(num);
+		if (num == NULL)
+			return (-1);
+		if(ft_string(num) < 0)
+			return(free(num), -1);
 		free(num);
 	}
 	return (ft_count(ui));

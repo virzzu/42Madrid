@@ -6,7 +6,7 @@
 /*   By: virginia <virginia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 10:08:00 by virginia          #+#    #+#             */
-/*   Updated: 2025/03/13 11:53:04 by virginia         ###   ########.fr       */
+/*   Updated: 2025/03/13 14:05:21 by virginia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int	ft_pointer(size_t ptr)
 	}
 	else
 	{
-		ft_dec_to_hex(ptr);
+		if (ft_dec_to_hex(ptr) < 0)
+			return (-1);
 		i = i + ft_hexalen(ptr);
 	}
 	return (i);
